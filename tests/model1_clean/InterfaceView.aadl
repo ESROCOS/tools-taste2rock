@@ -1,0 +1,240 @@
+---------------------------------------------------
+-- AADL2.1
+-- TASTE type interfaceview
+-- 
+-- generated code: do not edit
+---------------------------------------------------
+
+PACKAGE interfaceview::IV::taste2rock_test1_producer
+PUBLIC
+
+WITH interfaceview::IV::taste2rock_test1_consumer;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_activator
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_activator;
+
+SUBPROGRAM IMPLEMENTATION PI_activator.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 50 ms;
+END PI_activator.others;
+
+SUBPROGRAM RI_sendSporadic
+FEATURES
+  val : IN PARAMETER DataView::Wrappers_Vector3d {
+    Taste::encoding => NATIVE;
+  };
+END RI_sendSporadic;
+
+SUBPROGRAM IMPLEMENTATION RI_sendSporadic.others
+END RI_sendSporadic.others;
+
+SUBPROGRAM RI_setProt
+FEATURES
+  val : IN PARAMETER DataView::T_UInt32 {
+    Taste::encoding => NATIVE;
+  };
+END RI_setProt;
+
+SUBPROGRAM IMPLEMENTATION RI_setProt.others
+END RI_setProt.others;
+
+SUBPROGRAM RI_getUnprot
+FEATURES
+  val : OUT PARAMETER DataView::T_UInt32 {
+    Taste::encoding => NATIVE;
+  };
+END RI_getUnprot;
+
+SUBPROGRAM IMPLEMENTATION RI_getUnprot.others
+END RI_getUnprot.others;
+
+SUBPROGRAM RI_sendEmpty
+END RI_sendEmpty;
+
+SUBPROGRAM IMPLEMENTATION RI_sendEmpty.others
+END RI_sendEmpty.others;
+
+SYSTEM taste2rock_test1_producer
+FEATURES
+  PI_activator : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_producer::PI_activator.others {
+    Taste::coordinates => "369 554";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 1000 ms;
+    Taste::Deadline => 1000 ms;
+    Taste::InterfaceName => "activator";
+  };
+  RI_sendSporadic : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_sendSporadic.others {
+    Taste::coordinates => "1380 525";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "sendSporadic";
+    Taste::labelInheritance => "true";
+  };
+  RI_setProt : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_setProt.others {
+    Taste::coordinates => "1380 761";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "setProt";
+    Taste::labelInheritance => "true";
+  };
+  RI_getUnprot : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_getUnprot.others {
+    Taste::coordinates => "1380 877";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "getUnprot";
+    Taste::labelInheritance => "true";
+  };
+  RI_sendEmpty : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_sendEmpty.others {
+    Taste::coordinates => "1380 616";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "sendEmpty";
+    Taste::labelInheritance => "true";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
+END taste2rock_test1_producer;
+
+SYSTEM IMPLEMENTATION taste2rock_test1_producer.others
+END taste2rock_test1_producer.others;
+
+END interfaceview::IV::taste2rock_test1_producer;
+
+PACKAGE interfaceview::IV::taste2rock_test1_consumer
+PUBLIC
+
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_sendSporadic
+FEATURES
+  val : IN PARAMETER DataView::Wrappers_Vector3d {
+    Taste::encoding => NATIVE;
+  };
+PROPERTIES
+  Taste::Associated_Queue_Size => 1;
+END PI_sendSporadic;
+
+SUBPROGRAM IMPLEMENTATION PI_sendSporadic.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 3 ms;
+END PI_sendSporadic.others;
+
+SUBPROGRAM PI_setProt
+FEATURES
+  val : IN PARAMETER DataView::T_UInt32 {
+    Taste::encoding => NATIVE;
+  };
+END PI_setProt;
+
+SUBPROGRAM IMPLEMENTATION PI_setProt.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_setProt.others;
+
+SUBPROGRAM PI_getUnprot
+FEATURES
+  val : OUT PARAMETER DataView::T_UInt32 {
+    Taste::encoding => NATIVE;
+  };
+END PI_getUnprot;
+
+SUBPROGRAM IMPLEMENTATION PI_getUnprot.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_getUnprot.others;
+
+SUBPROGRAM PI_sendEmpty
+END PI_sendEmpty;
+
+SUBPROGRAM IMPLEMENTATION PI_sendEmpty.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_sendEmpty.others;
+
+SYSTEM taste2rock_test1_consumer
+FEATURES
+  PI_sendSporadic : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_sendSporadic.others {
+    Taste::coordinates => "1842 498";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 10 ms;
+    Taste::Deadline => 10 ms;
+    Taste::InterfaceName => "sendSporadic";
+  };
+  PI_setProt : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_setProt.others {
+    Taste::coordinates => "1842 748";
+    Taste::RCMoperationKind => protected;
+    Taste::InterfaceName => "setProt";
+  };
+  PI_getUnprot : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_getUnprot.others {
+    Taste::coordinates => "1842 835";
+    Taste::RCMoperationKind => unprotected;
+    Taste::InterfaceName => "getUnprot";
+  };
+  PI_sendEmpty : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::taste2rock_test1_consumer::PI_sendEmpty.others {
+    Taste::coordinates => "1842 574";
+    Taste::RCMoperationKind => sporadic;
+    Taste::RCMperiod => 1000 ms;
+    Taste::InterfaceName => "sendEmpty";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => enabled;
+END taste2rock_test1_consumer;
+
+SYSTEM IMPLEMENTATION taste2rock_test1_consumer.others
+END taste2rock_test1_consumer.others;
+
+END interfaceview::IV::taste2rock_test1_consumer;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::IV::taste2rock_test1_producer;
+WITH interfaceview::IV::taste2rock_test1_consumer;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM interfaceview
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+END interfaceview;
+
+SYSTEM IMPLEMENTATION interfaceview.others
+SUBCOMPONENTS
+-- [ interfaceview::IV::interfaceview.others.taste2rock_test1_producer - text 
+--The Producer. 
+--]
+  taste2rock_test1_producer : SYSTEM interfaceview::IV::taste2rock_test1_producer::taste2rock_test1_producer.others {
+    Taste::coordinates => "369 384 1380 1061";
+  };
+-- [ interfaceview::IV::interfaceview.others.taste2rock_test1_consumer - text 
+--The Consumer. 
+--]
+  taste2rock_test1_consumer : SYSTEM interfaceview::IV::taste2rock_test1_consumer::taste2rock_test1_consumer.others {
+    Taste::coordinates => "1842 400 2893 1072";
+  };
+CONNECTIONS
+  taste2rock_test1_consumer_PI_sendSporadic_taste2rock_test1_producer_RI_sendSporadic : SUBPROGRAM ACCESS taste2rock_test1_consumer.PI_sendSporadic -> taste2rock_test1_producer.RI_sendSporadic {
+    Taste::coordinates => "1380 525 1611 525 1611 498 1842 498";
+  };
+  taste2rock_test1_consumer_PI_setProt_taste2rock_test1_producer_RI_setProt : SUBPROGRAM ACCESS taste2rock_test1_consumer.PI_setProt -> taste2rock_test1_producer.RI_setProt {
+    Taste::coordinates => "1380 761 1611 761 1611 748 1842 748";
+  };
+  taste2rock_test1_consumer_PI_getUnprot_taste2rock_test1_producer_RI_getUnprot : SUBPROGRAM ACCESS taste2rock_test1_consumer.PI_getUnprot -> taste2rock_test1_producer.RI_getUnprot {
+    Taste::coordinates => "1380 877 1611 877 1611 835 1842 835";
+  };
+  taste2rock_test1_consumer_PI_sendEmpty_taste2rock_test1_producer_RI_sendEmpty : SUBPROGRAM ACCESS taste2rock_test1_consumer.PI_sendEmpty -> taste2rock_test1_producer.RI_sendEmpty {
+    Taste::coordinates => "1380 616 1611 616 1611 574 1842 574";
+  };
+END interfaceview.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("DataView.aadl");
+  Taste::coordinates => "0 0 2970 2100";
+  Taste::version => "2.0";
+END interfaceview::IV;
+

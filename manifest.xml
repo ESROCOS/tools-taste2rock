@@ -1,0 +1,11 @@
+<package>
+    <description brief="Conversion from taste AADL files to OroGen files ">
+    </description>
+    <copyright>
+        SARGON consortium
+    </copyright>
+    <license>LGPL v2 or later</license>
+    <depend package="orogen" />
+    <depend package="python3-mako" />
+    <tags>stable</tags>
+</package>
