@@ -8,7 +8,7 @@ PYTHONPATH=../python:$PYTHONPATH
 echo "[TEST 1] Clear old results"
 rm -rf taste2rock_test1
 mkdir -p taste2rock_test1
-#rm -rf model1
+rm -rf model1
 echo "[TEST 1] Done."
 echo ""
 
@@ -18,7 +18,7 @@ if [ ! -d model1/binary.c ]; then
     cd model1
     ./build-script.sh
     cd ..
-    "[TEST 1] Done."
+    echo "[TEST 1] Done."
     echo ""
 else
     echo "[TEST 1] TASTE model already built"
@@ -41,16 +41,24 @@ echo ""
 echo "[TEST 1] Building Rock component: taste2rock_tes1_producer"
 cd taste2rock_test1/taste2rock_test1_producer
 echo "[TEST 1] in $(pwd)"
-amake .
-cd ../..
+orogen taste2rock_test1_producer.orogen
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$AUTOPROJ_CURRENT_ROOT/install ..
+make install
+cd ../../..
 echo "[TEST 1] Done."
 echo ""
 
 echo "[TEST 1] Building Rock component: taste2rock_tes1_consumer"
 cd taste2rock_test1/taste2rock_test1_consumer
 echo "[TEST 1] in $(pwd)"
-amake .
-cd ../..
+orogen taste2rock_test1_consumer.orogen
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=$AUTOPROJ_CURRENT_ROOT/install ..
+make install
+cd ../../..
 echo "[TEST 1] Done."
 echo ""
 

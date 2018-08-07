@@ -17,3 +17,4 @@ tests/model1_clean/*.md5
 tests/model1_clean/DataView.aadl
 tests/model1_clean/__*.aadl
 tests/model1_clean/.*
+tests/*.out
